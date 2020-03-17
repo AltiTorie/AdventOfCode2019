@@ -5,23 +5,16 @@ import java.util.Objects;
 
 public class Planet
 {
-    private SolarSystem solar;
     private Planet parent;
 
 
     private String name;
-
-    public ArrayList<Planet> getChildren()
-    {
-        return children;
-    }
 
     private ArrayList<Planet> children = new ArrayList<>();
 
 
     public Planet(SolarSystem solar, String name)
     {
-        this.solar = solar;
         this.name = name;
     }
 
@@ -48,9 +41,8 @@ public class Planet
 
     public int searchPathTo(String target, Planet previous, int current_counter)
     {
-        int counter = current_counter;
         int x;
-        if ((x = lookThroughChildren(target, previous, current_counter)) == counter-1)
+        if ((x = lookThroughChildren(target, previous, current_counter)) == current_counter -1)
         {
             previous = this;
             return parent.searchPathTo(target, previous, current_counter + 1);
@@ -117,10 +109,5 @@ public class Planet
     public String getName()
     {
         return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
     }
 }
