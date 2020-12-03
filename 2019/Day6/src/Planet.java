@@ -6,8 +6,6 @@ import java.util.Objects;
 public class Planet
 {
     private Planet parent;
-
-
     private String name;
 
     private ArrayList<Planet> children = new ArrayList<>();
