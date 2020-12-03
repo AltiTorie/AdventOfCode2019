@@ -6,25 +6,50 @@ namespace Day1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine(runChallenge());
-
+            string[] lines = System.IO.File.ReadAllLines(@"F:\Workspace\AdventOfCode\2020\Day1\Day1\input.txt");
+            int[] input = new int[lines.Length];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                input[i] = Convert.ToInt32(lines[i]);
+            }
+            Console.WriteLine(RunPart1(input));
+            Console.WriteLine(RunPart2(input));
 
         }
-
-        private static int runChallenge()
+        private static int RunPart1(int[] input)
         {
-            int[] input = { 1028, 1987, 1938, 1136, 1503, 1456, 1107, 1535, 1946, 1986, 855, 1587, 1632, 1548, 1384, 1894, 1092, 1876, 1914, 1974, 1662, 1608, 2004, 1464, 1557, 1485, 1267, 182, 1307, 1903, 1102, 1578, 1421, 1184, 1290, 1786, 1295, 1930, 1131, 1802, 1685, 1735, 1498, 1052, 1688, 990, 1805, 1768, 1922, 1781, 1897, 1545, 1591, 1393, 1186, 149, 1619, 1813, 1708, 1119, 1214, 1705, 1942, 1684, 1460, 1123, 1439, 1672, 1980, 1337, 1731, 1203, 1481, 2009, 1110, 1116, 1443, 1957, 1891, 1595, 1951, 1883, 173, 1697, 1321, 1689, 1103, 1300, 1262, 1190, 1667, 1843, 1544, 1877, 1718, 1866, 1929, 1169, 1693, 1518, 1375, 1477, 1222, 1791, 1612, 1373, 1253, 1087, 1959, 1970, 112, 1778, 1412, 1127, 1767, 1091, 1653, 1609, 1810, 1912, 1917, 935, 1499, 1878, 1452, 1935, 1937, 968, 1905, 1077, 1701, 1789, 1506, 1451, 1125, 1686, 1117, 1991, 1215, 1776, 1976, 846, 1923, 1945, 1888, 1193, 1146, 1583, 1315, 1372, 1963, 1491, 1777, 1799, 1363, 1579, 1367, 1863, 1983, 1679, 1944, 1654, 1953, 1297, 530, 1502, 1738, 1934, 1185, 1998, 1764, 1856, 1207, 1181, 1494, 1676, 1900, 1057, 339, 1994, 2006, 1536, 2007, 644, 1173, 1692, 1493, 1756, 1916, 1890, 1908, 1887, 1241, 14471997, 1967, 1098, 1287, 1392, 1932 };
+            for (int i = 0; i < input.Length; i++)
+            {
+                int a = input[i];
+                for (int j = i; j < input.Length; j++)
+                {
+                        if (a + input[j] == 2020)
+                        {
+                            Console.WriteLine($"{a},{input[j]}");
+                            return a * input[j];
+                        }
+                }
+            }
+            return 0;
+        }
+        private static int RunPart2(int[] input)
+        {
 
             for (int i = 0; i < input.Length; i++)
             {
                 int a = input[i];
                 for (int j = i; j < input.Length; j++)
                 {
-                    if (a + input[j] == 2020)
+                    int b = input[j];
+                    for (int k = j; k < input.Length; k++)
                     {
-                        return a * input[j];
+                        if (a + b + input[k] == 2020)
+                        {
+                            Console.WriteLine($"{a},{b}, {input[k]}");
+                            return a * b * input[k];
+                        }
                     }
+
                 }
             }
             return 0;
